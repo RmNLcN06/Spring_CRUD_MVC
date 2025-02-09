@@ -29,14 +29,14 @@ public class Wrestler {
     private float weight;
 
     @Column(name="height")
-    private String height;
+    private float height;
 
 
     // define constructors
 
     public Wrestler() {}
 
-    public Wrestler(String firstName, String lastName, String alias, int age, float weight, String height) {
+    public Wrestler(String firstName, String lastName, String alias, int age, float weight, float height) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.alias = alias;
@@ -96,11 +96,11 @@ public class Wrestler {
         this.weight = weight;
     }
 
-    public String getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
