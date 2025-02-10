@@ -31,6 +31,6 @@ public class WrestlerController {
         // add to spring model
         theModel.addAttribute("wrestlers", theWrestlers);
         
-        return "list-wrestlers";
+        return "wrestlers/list-wrestlers";
     }
 }
