@@ -5,10 +5,7 @@ import com.rmnlcn.Spring_CRUD_MVC.services.WrestlerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +41,19 @@ public class WrestlerController {
 
         theModel.addAttribute("wrestler", theWrestler);
 
+        return "wrestlers/wrestler-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("wrestlerId") int theId, Model theModel) {
+
+        // get the wrestler from the service
+        Wrestler theWrestler = wrestlerService.findById(theId);
+
+        // set wrestler in the model to prepopulate the form
+        theModel.addAttribute("wrestler", theWrestler);
+
+        // send over to the form
         return "wrestlers/wrestler-form";
     }
 
