@@ -33,4 +33,15 @@ public class WrestlerController {
         
         return "wrestlers/list-wrestlers";
     }
+
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model theModel) {
+
+        // create model attribute to bind form data
+        Wrestler theWrestler = new Wrestler();
+
+        theModel.addAttribute("wrestler", theWrestler);
+
+        return "wrestlers/wrestler-form";
+    }
 }
