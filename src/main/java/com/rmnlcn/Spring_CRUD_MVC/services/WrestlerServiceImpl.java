@@ -20,7 +20,7 @@ public class WrestlerServiceImpl implements WrestlerService {
 
     @Override
     public List<Wrestler> findAll() {
-        return wrestlerRepository.findAll();
+        return wrestlerRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
