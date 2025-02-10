@@ -66,4 +66,14 @@ public class WrestlerController {
         // use a redirect to prevent duplicate submissions
         return "redirect:/wrestlers/list";
     }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("wrestlerId") int theId) {
+
+        // delete the wrestler
+        wrestlerService.deleteById(theId);
+
+        // redirect to the /wrestlers/list
+        return "redirect:/wrestlers/list";
+    }
 }
