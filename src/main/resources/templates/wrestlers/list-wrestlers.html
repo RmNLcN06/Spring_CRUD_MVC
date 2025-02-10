@@ -20,6 +20,7 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Alias</th>
+                    <th>Action</th>
                 </tr>
             </thead>
 
@@ -28,6 +29,9 @@
                     <td th:text="${tempWrestler.firstName}"></td>
                     <td th:text="${tempWrestler.lastName}"></td>
                     <td th:text="${tempWrestler.alias}"></td>
+
+                    <!-- Add update button link -->
+                    <td><a th:href="@{/wrestlers/showFormForUpdate(wrestlerId=${tempWrestler.id})}" class="btn btn-info btn-sm">Update</a></td>
                 </tr>
             </tbody>
         </table>
