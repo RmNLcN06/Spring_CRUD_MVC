@@ -20,6 +20,11 @@ public class WrestlerController {
         wrestlerService = theWrestlerService;
     }
 
+    @GetMapping("/home")
+    public String showHome() {
+        return "wrestlers/wrestlers-home";
+    }
+
     // add mapping for "/list"
     @GetMapping("/list")
     public String listWrestlers(Model theModel) {
