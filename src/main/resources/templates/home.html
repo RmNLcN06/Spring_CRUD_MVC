@@ -21,6 +21,13 @@
         Role(s): <p sec:authentication="principal.authorities"></p>
     </div>
 
+    <hr>
+
+    <!-- Add link to point to /registered-users (for registered users) -->
+    <p>
+        <a th:href="@{/registered-users}">Registered User Part</a>(Only for Registered Users)
+    </p>
+
     <!-- Add logout button -->
     <form action="#" th:action="@{/logout}" method="POST">
         <input type="submit" value="Logout">
