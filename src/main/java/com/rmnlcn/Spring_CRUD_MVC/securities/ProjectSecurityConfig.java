@@ -44,7 +44,11 @@ public class ProjectSecurityConfig {
                         .loginPage("/showLoginPage")
                         .loginProcessingUrl("/authenticateUser")
                         .permitAll()
+                )
+                .logout(logout -> logout.permitAll()
+                // or => .logout(LogoutConfigurer::permitAll
                 );
+
         return http.build();
     }
 }
