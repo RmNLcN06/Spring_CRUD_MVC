@@ -11,4 +11,10 @@ public class HomeController {
         return "home";
     }
 
+    // Add request mapping for /registered-users
+    @GetMapping("/registered-users")
+    public String showRegisteredUsers() {
+        return "roles/registered-users";
+    }
+
 }
