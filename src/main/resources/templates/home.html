@@ -17,6 +17,9 @@
     <div>
         User: <p sec:authentication="principal.username"></p>
     </div>
+    <div>
+        Role(s): <p sec:authentication="principal.authorities"></p>
+    </div>
 
     <!-- Add logout button -->
     <form action="#" th:action="@{/logout}" method="POST">
