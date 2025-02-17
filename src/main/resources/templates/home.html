@@ -23,15 +23,19 @@
 
     <hr>
 
-    <!-- Add link to point to /registered-users (for registered users) -->
-    <p>
-        <a th:href="@{/registered-users}">Registered User Part</a>(Only for Registered Users)
-    </p>
+    <div sec:authorize="hasRole('REGISTERED_USER')">
+        <!-- Add link to point to /registered-users (for registered users) -->
+        <p>
+            <a th:href="@{/registered-users}">Registered User Part</a>(Only for Registered Users)
+        </p>
+    </div>
 
-    <!-- Add link to point to /admin-users (for admin users) -->
-    <p>
-        <a th:href="@{/admin-users}">Admin User Part</a>(Only for Admin Users)
-    </p>
+    <div sec:authorize="hasRole('ADMIN_USER')">
+        <!-- Add link to point to /admin-users (for admin users) -->
+        <p>
+            <a th:href="@{/admin-users}">Admin User Part</a>(Only for Admin Users)
+        </p>
+    </div>
 
     <!-- Add logout button -->
     <form action="#" th:action="@{/logout}" method="POST">
