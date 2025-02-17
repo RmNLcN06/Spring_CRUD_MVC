@@ -28,6 +28,11 @@
         <a th:href="@{/registered-users}">Registered User Part</a>(Only for Registered Users)
     </p>
 
+    <!-- Add link to point to /admin-users (for admin users) -->
+    <p>
+        <a th:href="@{/admin-users}">Admin User Part</a>(Only for Admin Users)
+    </p>
+
     <!-- Add logout button -->
     <form action="#" th:action="@{/logout}" method="POST">
         <input type="submit" value="Logout">
