@@ -50,6 +50,9 @@ public class ProjectSecurityConfig {
                 )
                 .logout(logout -> logout.permitAll()
                 // or => .logout(LogoutConfigurer::permitAll
+                )
+                .exceptionHandling(configurer -> configurer
+                        .accessDeniedPage("/access-denied")
                 );
 
         return http.build();
