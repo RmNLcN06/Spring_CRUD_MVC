@@ -38,6 +38,9 @@ public class ProjectSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(configurer -> configurer
+                        .requestMatchers("/").hasRole("SIMPLE_USER")
+                        .requestMatchers("/registered-users/**").hasRole("REGISTERED_USER")
+                        .requestMatchers("/admin-users/**").hasRole("ADMIN_USER")
                         .anyRequest()
                         .authenticated())
                 .formLogin(form -> form
