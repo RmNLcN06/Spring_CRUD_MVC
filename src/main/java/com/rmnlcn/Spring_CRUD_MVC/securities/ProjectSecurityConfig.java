@@ -44,7 +44,15 @@ public class ProjectSecurityConfig {
     // Add support for JDBC
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        // define query to retrieve user by username
+        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT member_id, pswd, active FROM members WHERE member_id=?");
+
+        // define query to retrieve authorities/roles by username
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT member_id, role FROM roles WHERE member_id=?");
+
+        return jdbcUserDetailsManager;
     }
 
     @Bean
