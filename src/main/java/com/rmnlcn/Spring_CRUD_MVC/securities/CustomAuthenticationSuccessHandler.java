@@ -27,7 +27,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         System.out.println("memberName=" + memberName);
 
-        Member theMember = merberService.findByUserName(memberName);
+        Member theMember = memberService.findByMemberName(memberName);
 
         // now place in the session
         HttpSession session = request.getSession();
