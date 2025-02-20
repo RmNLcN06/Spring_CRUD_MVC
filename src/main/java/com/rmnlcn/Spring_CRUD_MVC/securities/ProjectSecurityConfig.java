@@ -2,11 +2,13 @@ package com.rmnlcn.Spring_CRUD_MVC.securities;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 /*import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;*/
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,6 +43,20 @@ public class ProjectSecurityConfig {
     }
      */
 
+    // bcrypt bean definition
+    public BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
+
+
+    // authenticationProvider bean definition
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(MemberService memberService) {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(memberService); //set the custom member details service
+        auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
+        return auth;
+    }
+
+    /*
     // Add support for JDBC
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
@@ -53,7 +69,7 @@ public class ProjectSecurityConfig {
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT member_id, role FROM roles WHERE member_id=?");
 
         return jdbcUserDetailsManager;
-    }
+    } */
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -62,11 +78,13 @@ public class ProjectSecurityConfig {
                         .requestMatchers("/").hasRole("SIMPLE_USER")
                         .requestMatchers("/registered-users/**").hasRole("REGISTERED_USER")
                         .requestMatchers("/admin-users/**").hasRole("ADMIN_USER")
+                        .requestMatchers("/register/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .formLogin(form -> form
                         .loginPage("/showLoginPage")
                         .loginProcessingUrl("/authenticateUser")
+                        .successHandler(customAuthenticationSuccessHandler)
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll()
