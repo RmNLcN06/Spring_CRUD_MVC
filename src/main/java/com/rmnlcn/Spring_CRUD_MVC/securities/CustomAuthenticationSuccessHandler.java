@@ -1,6 +1,7 @@
 package com.rmnlcn.Spring_CRUD_MVC.securities;
 
 import com.rmnlcn.Spring_CRUD_MVC.entities.Member;
+import com.rmnlcn.Spring_CRUD_MVC.services.MemberService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     public CustomAuthenticationSuccessHandler(MemberService theMemberService) {
         memberService = theMemberService;
