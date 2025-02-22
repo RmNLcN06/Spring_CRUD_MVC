@@ -51,21 +51,10 @@ public class MemberServiceImpl implements MemberService {
         member.setEnabled(true);
 
         // give member default role of "simple user"
-        member.setRoles(Arrays.asList(roleDao.findRoleByName("SIMPLE_USER")));
+        member.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_SIMPLE_USER")));
 
         // save member in the database
         memberDao.save(member);
-    }
-
-    private Collection<SimpleGrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-        for(Role tempRole : roles) {
-            SimpleGrantedAuthority tempAuthority = new SimpleGrantedAuthority(tempRole.getName());
-            authorities.add(tempAuthority);
-        }
-
-        return authorities;
     }
 
     @Override
@@ -79,5 +68,16 @@ public class MemberServiceImpl implements MemberService {
         Collection<SimpleGrantedAuthority> authorities = mapRolesToAuthorities(member.getRoles());
 
         return new org.springframework.security.core.userdetails.User(member.getMemberName(), member.getPassword(), authorities);
+    }
+
+    private Collection<SimpleGrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for(Role tempRole : roles) {
+            SimpleGrantedAuthority tempAuthority = new SimpleGrantedAuthority(tempRole.getName());
+            authorities.add(tempAuthority);
+        }
+
+        return authorities;
     }
 }
