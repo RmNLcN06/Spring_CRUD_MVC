@@ -31,6 +31,10 @@ public class Member {
     @Column(name = "email")
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="members_roles",
+            joinColumns = @JoinColumn(name = "members_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private Collection<Role> roles;
 
 
