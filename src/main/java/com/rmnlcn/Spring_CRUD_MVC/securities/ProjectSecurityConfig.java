@@ -76,7 +76,8 @@ public class ProjectSecurityConfig {
 
 
         http.authorizeHttpRequests(configurer -> configurer
-                        .requestMatchers("/").hasRole("SIMPLE_USER")
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/simple-users/**").hasRole("SIMPLE_USER")
                         .requestMatchers("/registered-users/**").hasRole("REGISTERED_USER")
                         .requestMatchers("/admin-users/**").hasRole("ADMIN_USER")
                         .requestMatchers("/registers/**").permitAll()
@@ -88,7 +89,7 @@ public class ProjectSecurityConfig {
                         .successHandler(customAuthenticationSuccessHandler)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll()
+                .logout(logout -> logout.permitAll().logoutSuccessUrl("/")
                 // or => .logout(LogoutConfigurer::permitAll
                 )
                 .exceptionHandling(configurer -> configurer
