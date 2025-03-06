@@ -1,11 +1,10 @@
 package com.rmnlcn.Spring_CRUD_MVC.entities;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
 
 @Entity
-@Table(name="member")
+@Table(name="members")
 public class Member {
 
     @Id
@@ -125,11 +124,11 @@ public class Member {
         return "Member{" +
                 "id=" + id +
                 ", memberName='" + memberName + '\'' +
-                ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", roles='" + roles +
                 '}';
     }
 }

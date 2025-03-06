@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/registers")
 public class RegistrationController {
 
     private Logger logger = Logger.getLogger(getClass().getName());
@@ -36,7 +36,7 @@ public class RegistrationController {
     }
 
     @GetMapping("/showRegistrationForm")
-    public String showMyLoginPage(Model theModel) {
+    public String showRegistrationForm(Model theModel) {
 
         theModel.addAttribute("webMember", new WebMember());
 
@@ -70,9 +70,9 @@ public class RegistrationController {
         // create member account and store in the database
         memberService.save(theWebMember);
 
-        logger.info("Successfully created user: " + memberName);
+        logger.info("Successfully created member: " + memberName);
 
-        // place user in the web http session for later use
+        // place member in the web http session for later use
         session.setAttribute("member", theWebMember);
 
         return "registers/registration-confirmation";

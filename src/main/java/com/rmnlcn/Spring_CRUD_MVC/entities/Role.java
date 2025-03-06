@@ -3,7 +3,7 @@ package com.rmnlcn.Spring_CRUD_MVC.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
 
     @Id

@@ -43,6 +43,7 @@ public class ProjectSecurityConfig {
      */
 
     // bcrypt bean definition
+    @Bean
     public BCryptPasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
 
@@ -78,7 +79,7 @@ public class ProjectSecurityConfig {
                         .requestMatchers("/").hasRole("SIMPLE_USER")
                         .requestMatchers("/registered-users/**").hasRole("REGISTERED_USER")
                         .requestMatchers("/admin-users/**").hasRole("ADMIN_USER")
-                        .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/registers/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .formLogin(form -> form

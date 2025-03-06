@@ -1,11 +1,12 @@
 package com.rmnlcn.Spring_CRUD_MVC.daos;
 
-import com.rmnlcn.Spring_CRUD_MVC.entities.Member;
 import com.rmnlcn.Spring_CRUD_MVC.entities.Role;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RoleDaoImpl implements RoleDao{
 
     @Autowired
